@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-function Addpost() {
+function Addpost({ handelAddPost }) {
   const username = useRef();
   const userid = useRef();
   const email = useRef();
@@ -10,10 +10,19 @@ function Addpost() {
   const time = useRef();
   function handelSubmit(event) {
     event.preventDefault();
-    console.log(username.current.value);
+    const newPost = {
+      username: username.current.value,
+      userid: userid.current.value,
+      email: email.current.value,
+      desc: desc.current.value,
+      likes: likes.current.value,
+      comments: comments.current.value,
+      time: time.current.value,
+    };
+    handelAddPost(newPost);
   }
   return (
-    <div className="border-b border-gray-900/10 pb-12">
+    <div className="border-b border-gray-900/10 pb-12 mx-4">
       <h2 className="text-base font-semibold leading-7 text-gray-900">
         Add Post
       </h2>
